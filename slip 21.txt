@@ -1,0 +1,139 @@
+﻿SLIP:21
+
+Q1) Define a class MyDate(Day, Month, year) with methods to accept and display a MyDateobject.
+ Accept date as dd,mm,yyyy. Throw user defined exception "InvalidDateException" if the date is invalid.
+
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class InvalidDateException extends Exception{
+ 
+}
+public class MyDate {
+
+ int dd,mm,yy;
+
+ public MyDate(){
+  
+ }
+ public MyDate(int dd,int mm,int yy) {
+
+  this.dd=dd;
+  this.mm=mm;
+  this.yy=yy;
+ }
+ public boolean accept(){
+  
+  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+  try {
+   System.out.println("Enter Day:\t");
+   dd=Integer.parseInt(br.readLine());
+   System.out.println("Enter Month:\t");
+   mm=Integer.parseInt(br.readLine());
+   System.out.println("Enter Year:\t");
+   yy=Integer.parseInt(br.readLine());
+  } catch (Exception  e) {
+
+   e.printStackTrace();
+  }
+  try{
+   if(dd<=0 || dd>=32) throw new InvalidDateException();
+   if(mm<=0 || mm>=13) throw new InvalidDateException();
+   if(dd== 29 && mm==2 && (yy%4)!=0 ) throw new InvalidDateException();
+  }
+  catch(InvalidDateException e){
+   System.out.println("Inavlid Date: \t"+dd+"/"+mm+"/"+yy);
+   return false;
+  }
+  return true;
+ }
+
+ public static void main(String[] args) {
+
+   MyDate d=new MyDate(); 
+   String str=null;
+   BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+   do{
+    if(d.accept())d.display();
+    System.out.println("You want Enter new date(y/n)?");
+    try {
+     str=br.readLine();
+    } catch (IOException e) {
+
+     e.printStackTrace();
+    }
+   }while(str.equalsIgnoreCase("y"));
+ }
+ private void display() {
+
+  System.out.println(dd+"/"+mm+"/"+yy);
+ }
+
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Q2) Create an employee class(id,name,deptname,salary). Define a default and parameterized constructor. Use ‘this’ keyword to initialize instance variables. Keep a count of objects created.
+ Create objects using parameterized constructor and display the object count after each object is created. (Use static member and method). Also display the contents of each  object.
+
+import java.io.*;
+class employee
+{
+int id, sal;
+String name,dept;
+static int count=0;
+employee()
+{
+}
+employee(int id,String name,String dept,int sal)
+{
+this.id=id;
+this.name=name;
+this.dept=dept;
+this.sal=sal;
+count++;
+}
+static void displaycount()
+{
+System.out.println("object:-"+count+"\tcreated");
+}
+public void display()
+{
+System.out.println("id="+id);
+System.out.println("name="+name);
+System.out.println("department="+dept);
+System.out.println("salary="+sal);
+System.out.println("____________________________");
+}
+}
+public class em
+{
+public static void main(String a[] )throws IOException
+{
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+System.out.println("how many records ?");
+int n=Integer.parseInt(br.readLine());
+employee e[]=new employee[n];
+for(int i=0;i<n;i++)
+{
+System.out.println("enter id=");
+int id=Integer.parseInt(br.readLine());
+System.out.println("enter name=");
+String na=br.readLine();
+System.out.println("enter department=");
+String dept=br.readLine();
+System.out.println("enter salary=");
+int sal=Integer.parseInt(br.readLine());
+e[i]=new employee(id,na,dept,sal);
+e[i].displaycount();
+}
+for(int i=0;i<n;i++)
+e[i].display();
+}
+}
+

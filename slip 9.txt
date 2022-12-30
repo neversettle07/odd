@@ -1,0 +1,113 @@
+﻿
+SLIP:9
+
+Q1) Define a “Clock” class that does the following ;
+a.	Accept Hours, Minutes and Seconds
+b.	Check the validity of numbers
+c.	Set the time to AM/PM mode
+Use the necessary constructors and methods to do the above task
+
+import java.util.*;
+class clock
+{
+	int hours,minutes,seconds;
+	clock(int h,int m,int s)
+	{
+		hours=h;
+		minutes=m;
+		seconds=s;
+	}
+	void isTimeValid()
+	{
+		if(hours>=0 && hours<24 && minutes>0 && minutes<60 && seconds>0 && seconds<60)
+		{
+			System.out.println("time is valid");
+		}
+		else
+		{
+			System.out.println("Time is invalid");
+		}
+	}
+	void setTimeMode()
+	{
+		if(hours<12)
+		{
+			System.out.println("Time = "+hours+":"+minutes+":"+seconds+"AM");
+		}
+		else
+		{
+			hours = hours -12;
+			System.out.println("Time = "+hours+":"+minutes+":"+seconds+"PM");
+		}
+	}
+}
+public class cl
+{
+public static void main(String args[])
+{
+	clock c1 = new clock(16,34,45);
+	c1.isTimeValid();
+	c1.setTimeMode();
+
+}
+}
+-------------------------------------------------------------------------------------------------------
+Q2) Write a program to using marker interface create a class Product (product_id, product_name, product_cost, product_quantity) default and parameterized constructor. Create objectsof class product and display the contents of each object and Also display the object count.
+import java.util.*;
+class product implements Cloneable
+{
+public int pid,pcost,pqty;
+public String Pname;
+public static int count;
+public product()
+{}
+public product(int p,String pn,int pc,int pq)
+{
+pid=p;
+Pname=pn;
+pcost=pc;
+pqty=pq;
+count++;
+}
+protected Object clone() throws CloneNotSupportedException
+{
+return super.clone();
+}
+public void display()
+{
+System.out.println("The details of\t"+count+"object is=\n product id="+pid+"\n product name"+Pname+"\n product cost:"+pcost+"\n product quantity"+pqty);
+System.out.println("_______________________________________");
+}
+}
+public class Q20
+{
+public static void main(String args[]) throws CloneNotSupportedException
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("how many records");
+int n=sc.nextInt();
+product p[]=new product[n];
+product p2[]=new product[n];
+for(int i=0;i<n;i++)
+{
+System.out.println("ID=");
+int id=sc.nextInt();
+System.out.println("product name=");
+String pname=sc.next();
+System.out.println("product cost=");
+int pc=sc.nextInt();
+System.out.println("product Quantity=");
+int pq=sc.nextInt();
+p[i]=new product(id,pname,pc,pq);
+}
+for(int i=0;i<n;i++)
+{
+p2[i]=(product)p[i].clone();
+p2[i].display();
+}
+}
+}
+
+					
+
+

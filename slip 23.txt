@@ -1,0 +1,70 @@
+﻿
+						SLIP:23
+Q1) Define a class MyNumber having one private int data member. Write a default constructor to 
+ initialize it to 0 and another constructor to initialize it to a value (Use this). Write methods isNegative, isPositive, isZero, isOdd, isEven. Create an object in main.Use command line arguments to pass a value to the Object.
+
+public class MyNumber
+{
+	private int x;
+	public MyNumber()
+	{
+		x=0;
+	}
+	public MyNumber(int x)
+	{
+		this.x=x;
+	}
+	public boolean isnegative()
+	{
+		if(x<0)
+			return true;
+		else return false;
+	}
+	public boolean ispositive()
+	{
+		if(x>0)
+			return true;
+		else
+			return false;
+	}
+	public boolean iszero()
+	{
+		if(x==0)
+			return true;
+		else return false;
+	}
+	public boolean isodd()
+	{
+		if(x%2!=0)
+			return true;
+		else
+			return false;
+	}
+	public boolean iseven()
+	{
+		if(x%2==0)
+			return true;
+		else
+			return false;
+	}
+	public static void main(String [] args) throws ArrayIndexOutOfBoundsException
+	{
+		int x= Integer.parseInt(args[0]);
+		MyNumber m=new MyNumber(x);
+		if(m.isnegative())
+			System.out.println("Number is Negative");
+		if(m.ispositive())
+			System.out.println("Number is positive");
+		if(m.iszero())
+			System.out.println("Number is Zero");
+		if(m.isodd())
+			System.out.println("Number is Odd");
+		if(m.iseven())
+			System.out.println("Number is Even");
+	}
+	
+}
+-------------------------------------------------------------------------------------------------------
+Q2) Write a simple currency converter, as shown in the figure. User can enter the amount of "Singapore Dollars", "US Dollars", or "Euros", in floating-point number. The converted 
+values shall be displayed to 2 decimal places. Assume that 1 USD = 1.41 SGD,  1 USD = 0.92 Euro, 1 SGD = 0.65 Euro.
+

@@ -1,0 +1,199 @@
+﻿SLIP:29
+
+
+Q1) Write a program to create a class Customer(custno,custname,contactnumber,custaddr). 
+Write a method to search the customer name with given contact number and display the details.
+
+
+import java.util.*; 
+class Customer 
+{ 
+int cno,cphno; 
+String Cname,Caddr; 
+Customer(int c,String n,int p,String a) 
+{ 
+cno=c; 
+Cname=n; 
+cphno=p; 
+Caddr=a; 
+} 
+static void search(Customer s[],int n,String name,int ctno) 
+{ 
+for(int i=0;i<n;i++) 
+{ 
+if((name.equals(s[i].Cname)) && ctno==s[i].cphno) 
+System.out.println("Customer No="+s[i].cno+"\nName="+s[i].Cname+"\n Contact 
+Number="+s[i].cphno+"\nAddress="+s[i].Caddr); 
+else 
+System.out.println("No such record present..."); 
+} 
+} 
+} 
+public class Slip29_1 
+{ 
+public static void main(String args[]) 
+{ 
+Scanner sc=new Scanner(System.in); 
+System.out.println("Enter how many record?="); 
+int n=sc.nextInt(); 
+Customer c[]=new Customer[n]; 
+for(int i=0;i<n;i++) 
+{ 
+System.out.println("Enter Customer no="); 
+int cno=sc.nextInt(); 
+System.out.println("Enter Customer name="); 
+String cname=sc.next(); 
+System.out.println("Enter Customer contact number="); 
+int ctn=sc.nextInt(); 
+System.out.println("Enter Customer address="); 
+String ca=sc.next(); 
+c[i]=new Customer(cno,cname,ctn,ca); 
+} 
+System.out.println("Enter name and contact number to be serach?="); 
+String sn=sc.next(); 
+int sctno=sc.nextInt(); 
+Customer.search(c,n,sn,sctno); 
+} 
+} 
+
+
+
+-------------------------------------------------------------------------------------------------------
+Q2) Write a program to create a super class Vehicle having members Company and price.Derive two different classes LightMotorVehicle(mileage) and HeavyMotorVehicle(capacity_in_tons). Accept the information for "n" vehicles and display the information in appropriate form. While taking data, ask user about the type of vehicle first.
+
+import java.util.*;
+import java.io.*;
+class Vehicle
+{
+ private String company;
+ private double price;
+ 
+ Vehicle()
+ {
+  company="";
+  price=0;
+ }
+
+ Vehicle(String company,double price)
+ {
+  this.company=company;
+  this.price=price;
+ }
+
+ public void accept() throws IOException
+ {
+  BufferedReader br =  new BufferedReader (new InputStreamReader (System.in));
+  
+  System.out.println ("Enter name of the company");
+  company = br.readLine ();
+  
+  System.out.println ("Enter price in lakhs");
+  price = Double.parseDouble(br.readLine ()); 
+ }
+
+ public void display()
+ {
+  System.out.println("Company name= "+company+"\t price(in lakhs)= "+price);
+ }
+}
+
+class LightMotorVehicle extends Vehicle
+{
+ private float milage;
+
+ LightMotorVehicle()
+ {
+  milage=0;
+ }
+
+ LightMotorVehicle(float mil)
+ {
+  milage=mil;
+ }
+ 
+ public void accept() throws IOException
+ {
+  super.accept();
+  Scanner sc=new Scanner(System.in);
+  System.out.println("\tEnter milage: ");
+  milage=sc.nextFloat();
+ }
+ 
+ public void display()
+ {    super.display();
+  System.out.println("\tMilage is: "+milage);
+ }
+}
+
+  class HeavyMotorVehicle extends Vehicle 
+ {
+
+ private double capacity;
+ 
+ HeavyMotorVehicle()
+ {
+  
+  capacity=0;
+ }
+ HeavyMotorVehicle(double capac)
+ {
+  
+  capacity=capac;
+ }
+ public void accept() throws IOException
+ {
+  super.accept();
+  Scanner sc=new Scanner(System.in);
+  System.out.println("Enter capacity in tons:");
+  capacity=sc.nextDouble();
+ }
+ 
+ public void display()
+ {
+  super.display();
+  System.out.println("Capacity :"+capacity);
+ }
+}
+
+ public class TestVehicle 
+ {
+ public static void main(String args[]) throws IOException
+ {
+  int i,n,ch;
+                Scanner sc=new Scanner(System.in);
+  System.out.println("Enter number of vehicals:");
+  n=sc.nextInt();
+   Vehicle v[]=new Vehicle[n];
+  
+  for(i=0;i<n;i++)
+  {
+   System.out.println("1 : Light Motor Vehical");
+      System.out.println("2 : Heavy Motor Vehical");
+  
+   System.out.println("Enter Choice/type of the vehicle");
+   ch=sc.nextInt();
+   switch(ch)
+   {
+   case 1:
+    {
+      v[i]=new LightMotorVehicle();
+      v[i].accept();
+      v[i].display();
+    }
+   break;
+   case 2:
+   {
+    v[i]=new HeavyMotorVehicle();
+    v[i].accept();
+    v[i].display();
+   }
+   break;
+   default:
+   {
+    i--;
+    System.out.println("Invalid choice");
+   }
+   }
+  }
+ }
+}

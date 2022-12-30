@@ -1,0 +1,113 @@
+﻿SLIP:15
+
+Q1) Accept the names of two files and copy the contents of the first to the second. First file having Book name and Author name in file. 
+
+import java.io.*;
+import java.util.*;
+class copy{
+public static void main(String arg[]) throws Exception {
+Scanner sc = new Scanner(System.in);
+System.out.print("source file name :\n");
+String file1 = sc.next();
+System.out.print("destination file name :\n");
+String file2 = sc.next();
+FileReader fin = new FileReader(file1);
+FileWriter fout = new FileWriter(file2, true);
+int c;
+while ((c = fin.read()) != -1) {
+fout.write(c);
+}
+System.out.println("Copy finish...");
+
+fin.close();
+fout.close();
+}
+}
+-------------------------------------------------------------------------------------------------------
+
+Q2) Write a program to define a class Account having members custname, accno. Define default and parameterized constructor. Create a subclass called SavingAccount with member savingbal, minbal. Create a derived class AccountDetail that extends the class SavingAccount with members, depositamt and withdrawalamt. Write a appropriate method to display customer details.
+
+
+import java.util.*;
+class Account
+{
+String Cname;
+int acno;
+public Account(){}
+public Account(String Cname,int acno)
+{
+this.Cname=Cname;
+this.acno=acno;
+}
+}
+class SavingAccount extends Account
+{
+int sbal,minbal;
+SavingAccount(String Cname,int acno,int sbal,int minbal)
+{
+super(Cname,acno);
+this.sbal=sbal;
+this.minbal=minbal;
+}
+}
+class AccountDetails extends SavingAccount
+{
+int damt,wamt;
+AccountDetails(String Cname,int acno,int sbal,int minbal,int damt,int wamt)
+{
+super(Cname,acno,sbal,minbal);
+this.damt=damt;
+this.wamt=wamt;
+}
+public void deposite()
+{
+sbal+=damt;
+System.out.println("Saving Balance="+sbal);
+}
+public void withdraw()
+{
+if(wamt>sbal)
+System.out.println("Can not withdraw");
+else
+{
+int chkbal=sbal-wamt;
+if(chkbal<minbal)
+System.out.println("Can not withdraw");
+else
+sbal=chkbal;
+System.out.println("Saving Balance="+sbal);
+}
+}
+public void display()
+{
+System.out.println("Customer Name="+Cname);
+System.out.println("Account Number="+acno);
+System.out.println("Saving Balance="+sbal);
+}
+}
+public class Slip15_2
+{
+public static void main(String args[])
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter Customer Name:-");
+String n=sc.next();
+System.out.println("Enter Account Number:-");
+int ano=sc.nextInt();
+System.out.println("Enter Saving Balance:-");
+int sb=sc.nextInt();
+System.out.println("Enter Minimum balance required:-");
+int mb=sc.nextInt();
+System.out.println("Enter Amount to be deposite:-");
+int damt=sc.nextInt();
+System.out.println("Enter amount to be withdraw:-");
+int wamt=sc.nextInt();
+AccountDetails a=new AccountDetails(n,ano,sb,mb,damt,wamt);
+System.out.println("Customer Account Information:-");
+a.display();
+System.out.println("Customer Account Information after depositing amount:-");
+a.deposite();
+System.out.println("Customer Account Information after withdrawing amount:-");
+a.withdraw();
+}
+}

@@ -1,0 +1,87 @@
+﻿SLIP 7
+
+Q1) Design a class for Bank. Bank Class should support following operations;
+a.	Deposit a certain amount into an account
+b.	Withdraw a certain amount from an account
+c.	Return a Balance value specifying the amount with details
+
+
+
+import java.util.*;
+class Bank
+{
+	int accNo;
+	String name;
+	int balance;
+	
+	void setData(int a,String n,int b)
+	{
+		accNo = a;
+		name = n;
+		balance = b;
+	}
+	void deposit(int amt)
+	{
+		balance = balance+amt;
+		
+	}
+	void withdraw(int amt)
+	{
+		if(amt>balance)
+		{
+		System.out.println("insufficient fund");
+		}
+		else
+		{
+		balance = balance-amt;
+		}
+	}
+		void dis()
+		{
+		System.out.println("accno="+accNo);
+		System.out.println("name="+name);
+		System.out.println("Balance="+balance);
+		}
+		
+}
+	public class b
+	{
+		public static void main(String args[])
+		{
+			Bank b1 = new Bank();
+			
+			b1.setData(10101, "Ritu" ,100000);
+			b1.deposit(50000);
+			b1.withdraw(30000);
+			b1.dis();
+		}
+	
+	}
+
+=============================================================================================================================
+
+
+Q2) Write a program to accept a text file from user and display the contents of a file in reverse order and change its case.
+
+import java.io.*;
+import java.util.*;
+class Slip7_2
+{
+public static void main(String args[])throws IOException
+{
+FileReader fr=new FileReader("simple.txt");
+Scanner sc=new Scanner(fr);
+String s1,s2;
+while(sc.hasNext())
+{
+StringBuilder s3=new StringBuilder();
+s1=sc.next();
+s2=s1.toUpperCase();
+s3.append(s2);
+s3.reverse();
+System.out.println(s3);
+}
+fr.close();
+}
+}
+

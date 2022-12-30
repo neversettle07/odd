@@ -1,0 +1,80 @@
+﻿Q1) Write a Program to print all Prime numbers in an array of ‘n’ elements. (use command line arguments)
+class primenu
+{
+	public static void main(String args[])
+	{
+		int n =Integer.parseInt(args[0]);
+		int f =0;
+		for(int i=2;i<n/2;i++)
+		{
+			if(n%i==0)
+			{	
+				System.out.println("Ths number is not prime ");
+				f=1;
+				break;
+			}
+		}
+		if(f==0)
+		{
+			System.out.println("The number is Prime");
+		}
+	}
+	
+}
+-------------------------------------------------------------------------------------------------------
+Q2) Define an abstract class Staff with protected members id and name. Define a parameterized constructor. Define one subclass OfficeStaff with member department. Create n objects of OfficeStaff and display all details
+import java.util.*;
+abstract class staff
+{
+protected int mid;
+ protected String mname;
+staff(int mid,String mname)
+{
+this.mid=mid;
+this.mname=mname;
+}
+abstract void display();
+}
+class officestaff extends staff 
+{
+String dept;
+officestaff(int mid,String mname,String dept)
+{
+super(mid,mname);
+this.dept=dept;
+}
+void display()
+{
+System.out.println("member id="+mid);
+System.out.println("member name="+mname);
+System.out.println("member deparment="+dept);
+System.out.println("____________________________________");
+}
+}
+public class A3_p2
+{
+public static void main(String args[])
+{
+Scanner sc= new Scanner(System.in);
+System.out.println(" how many object you want to create");
+int n= sc.nextInt();
+officestaff o[]=new officestaff[n];
+for(int i=0;i<n;i++)
+{
+System.out.println("enetr the member id ");
+int mid= sc.nextInt();
+System.out.println("enetr the member name ");
+String mname= sc.next();
+System.out.println("enetr the member deparment ");
+String dept= sc.next();
+o[i]=new officestaff(mid,mname,dept);
+}
+System.out.println("Total number of object created"+n);
+for(int i=0;i<n;i++)
+{
+o[i].display();
+}
+}
+}
+
+

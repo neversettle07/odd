@@ -1,0 +1,103 @@
+﻿SLIP:11
+
+
+Q1) Define an interface “Operation” which has method volume( ).Define a constant PI having a value 3.142 Create a class cylinder which implements this interface (members – radius,height). Create one object and calculate the volume.
+
+interface operations
+{
+final double PI=3.14;
+public double area();
+public double volume();
+}
+class cylinder implements operations 
+{
+double r,h;
+
+cylinder(double r,double h)
+{
+this.r=r;
+this.h=h;
+}
+public double area()
+{
+return 2*PI*r*h+2*PI*r*r;
+}
+public double volume()
+{
+return PI*r*r*h;
+}
+}
+public class A3_p3
+{
+public static void main(String args[])
+{
+operations c=new cylinder(2.6,5.5);
+System.out.println("area="+c.area());
+System.out.println("volume="+c.volume());
+}
+}
+-------------------------------------------------------------------------------------------------------
+Q2) Write a program to accept the username and password from user if username and password are not same then raise "Invalid Password" with appropriate msg.
+
+
+import java.util.*;
+class UsernameException extends Exception 
+{
+      public UsernameException(String msg) 
+      {
+      super(msg);
+      }
+}   
+class PasswordException extends Exception
+{
+  public PasswordException(String msg)
+   {
+   super(msg);
+     }
+}
+class EmailID
+{
+String username, password;
+EmailID()
+{}
+EmailID(String u, String p)
+{
+username=u;
+password=p;
+}
+void display()
+{
+System.out.println("Login Successful !!!");
+}
+}
+public class mail
+ {
+    public static void main(String[] args) {
+     Scanner s = new Scanner(System.in);
+     String username, password;
+     System.out.print("Enter username :: ");
+      username = s.nextLine();    
+      System.out.print("Enter password :: ");
+      password = s.nextLine();
+      EmailID e=new EmailID(username, password);
+      int length = username.length();
+      try {
+       if(length < 6)
+      throw new UsernameException("Username must be greater than 6 characters ???");
+       else if(!password.equals("hello"))
+        throw new PasswordException("Incorrect password");
+       else
+       e.display();
+        
+      }
+      catch (UsernameException u) {
+       u.printStackTrace();
+      }
+      catch (PasswordException p) {
+       p.printStackTrace();
+      }
+      finally {
+       System.out.println("The finally statement is executed");
+      }
+     }
+    }

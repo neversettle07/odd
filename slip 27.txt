@@ -1,0 +1,95 @@
+﻿SLIP:27
+
+Q1) Define an Employee class with suitable attributes having getSalary() method, which returns salary withdrawn by a particular employee. Write a class Manager which extends a class Employee, override the getSalary() method, which will return salary of manager by adding traveling allowance, house rent allowance etc.
+
+class employee
+{
+	String name;
+	int sal;
+	employee()
+	{}
+	employee(String name,int sal)
+	{
+		this.name=name;
+		this.sal=sal;
+	}
+	int getsalary()
+	{
+		return sal;
+	}
+	
+}
+class manager extends employee
+{
+	int hrs,ta;
+	manager()
+	{
+	}
+	manager(String name,int sal,int hrs,int ta)
+	{
+		super(name,sal);
+		this.hrs=hrs;
+		this.ta=ta;
+	}
+	int getsalary()
+	{
+		return(super.getsalary()+hrs+ta);
+	}
+	
+}
+public class managersal
+{
+	public static void main(String args[])
+	{
+		manager m=new manager("Aditya",30000,5000,8000);
+		System.out.println("Manager salary : "+m.getsalary());
+	}
+}
+-------------------------------------------------------------------------------------------------------
+Q2) Write a program to accept a string as command line argument and check whether it is a file or directory. Also perform operations as follows:
+    i If it is a directory,delete all text files in that directory. Confirm delete operation from user before deleting text files. Also, display a count showing the number of files deleted, if any, from the directory.
+    ii If it is a file display various details of that file.
+
+
+
+import java.io.*;
+class file
+{
+    public static void main(String a[])
+    {
+
+        String fname=a[0];
+        File f = new File(fname);
+        int num=0;
+        if(f.isDirectory())
+        {
+            System.out.println("Given file "+fname+"is  directory :");
+            System.out.println("List of files are : ");
+            String s[] = f.list();
+            for(int i=0; i<s.length; i++)
+            {
+                File f1 = new File(fname, s[i]);
+
+                if(f1.isFile())
+                {
+                    num++;
+                    System.out.println(s[i]);    //file name in directory   
+                }   
+                else System.out.println("\n"+s[i]+" is a sub directory");
+            }
+            System.out.println("\nNumber of files are: "+num);
+        }
+        else
+        {
+            if(f.exists())
+            {
+                System.out.println("\n"+fname+" is a File");
+                System.out.println("Details of "+fname+" are : ");
+                System.out.println("Path of file is "+f.getPath());
+                System.out.println("Absolute Path of file is "+f.getAbsolutePath());
+                System.out.println("Size of file is "+f.length());
+            }
+            else System.out.println(fname+" file is not present ");
+        }
+    }
+}

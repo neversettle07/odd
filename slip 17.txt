@@ -1,0 +1,166 @@
+﻿	Slip:17
+
+Q1) Design a Super class Customer (name, phone-number). Derive a class Depositor(accno , balance) from Customer. 
+Again, derive a class Borrower (loan-no, loan-amt) from Depositor. Write necessary member functions to read and display the details of ‘n’customers.
+
+
+
+import java.util.*; 
+class customer 
+{ 
+String name; 
+int phno; 
+public customer(String name,int phno) 
+{ 
+this.name=name; 
+this.phno=phno; 
+} 
+} 
+class Depositor extends customer 
+{ 
+int accno,bal; 
+public Depositor(String name,int phno,int acno,int b) 
+{ 
+super(name,phno); 
+accno=acno; 
+bal=b; 
+} 
+} 
+class Borrower extends Depositor 
+{ 
+int lno,lamt; 
+public Borrower(String name,int phno,int acno,int b,int lno,int lamt) 
+{ 
+super(name,phno,acno,b); 
+this.lno=lno; 
+this.lamt=lamt; 
+} 
+public void display() 
+{ 
+System.out.println("Cutomer Name="+name); 
+System.out.println("Phone number="+phno); 
+System.out.println("Account no="+accno); 
+System.out.println("Balance="+bal); 
+System.out.println("Cutomer loan number="+lno); 
+System.out.println("Loan amount="+lamt); 
+} 
+} 
+public class Slip17_1 
+{ 
+public static void main(String args[]) 
+{ 
+Scanner sc=new Scanner(System.in); 
+System.out.println("Enter how many records?="); 
+int n=sc.nextInt(); 
+Borrower b[]=new Borrower[n]; 
+for(int i=0;i<n;i++) 
+{ 
+System.out.println("Enter customer name="); 
+String na=sc.next(); 
+System.out.println("Enter phone number="); 
+int p=sc.nextInt(); 
+System.out.println("Enter Account number="); 
+int acno=sc.nextInt(); 
+System.out.println("Enter Balance="); 
+int bal=sc.nextInt(); 
+System.out.println("Enter loan number="); 
+int lno=sc.nextInt(); 
+System.out.println("Enter loan amount="); 
+int lamt=sc.nextInt(); 
+b[i]=new Borrower(na,p,acno,bal,lno,lamt); 
+} 
+for(int i=0;i<n;i++) 
+{ 
+b[i].display(); 
+} 
+} 
+} 
+
+=====================================================================================================================================================
+
+
+Q2) Write Java program to design three text boxes and two buttons using swing. 
+Enter different strings in first and second textbox. On clicking the First command button, 
+concatenation of two strings should be displayed in third text box and on clicking second command button, reverse of string should display in third text box.
+
+
+
+
+
+import java.awt.*; 
+import javax.swing.*; 
+import java.awt.event.*; 
+public class Slip17_2 extends JFrame implements ActionListener 
+{ 
+JLabel l1,l2,l3; 
+JTextField t1,t2,t3; 
+JButton b1,b2; 
+Slip17_2() 
+{ 
+l1=new JLabel("Enter First String="); 
+l2=new JLabel("Enter Second String="); 
+l3=new JLabel("Result"); 
+t1=new JTextField(40); 
+t2=new JTextField(40); 
+t3=new JTextField(40); 
+b1=new JButton("Concatenate"); 
+b2=new JButton("Reverse"); 
+add(l1);add(t1); 
+add(l2);add(t2); 
+add(l3);add(t3); 
+add(b1);add(b2); 
+setLayout(new GridLayout(4,2,20,50)); 
+setVisible(true); 
+setSize(400,400); 
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+b1.addActionListener(this); 
+b2.addActionListener(this); 
+} 
+public void actionPerformed(ActionEvent e) 
+{ 
+if(e.getSource()==b1) 
+{ 
+String s1=t1.getText(); 
+String s2=t2.getText(); 
+String s3=s1+s2; 
+t3.setText(s3); 
+} 
+else if(e.getSource()==b2) 
+{ 
+StringBuilder b=new StringBuilder(); 
+String s1=t1.getText(); 
+String s2=t2.getText(); 
+String s3=s1+s2; 
+b.append(s3); 
+b.reverse(); 
+s3=b.toString(); 
+t3.setText(s3); 
+} 
+} 
+public static void main(String args[]) 
+{ 
+new Slip17_2(); 
+} 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
